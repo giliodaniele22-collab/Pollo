@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sondaggio</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: Arial;
+            text-align: center;
+            background-color: white;
+        }
+        h1 { font-size: 70px; text-align: center; }
+        button { font-size: 35px; padding: 20px 40px; }
+        #pollo {
+            position: absolute;
+            font-size: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Partecipa al sondaggio</h1>
+    <button onclick="cambia()">OK</button>
+
+    <script>
+        function cambia() {
+            document.body.innerHTML = "<h1 style='font-size:100px;'>SEI STATO HACKERATO POLLO</h1>";
+
+            let pollo = document.createElement("div");
+            pollo.id = "pollo";
+            pollo.innerText = "🐔";
+            document.body.appendChild(pollo);
+
+            let x = 100, y = 100;
+            let dx = 5, dy = 5;
+
+            function muovi() {
+                x += dx;
+                y += dy;
+                let width = window.innerWidth;
+                let height = window.innerHeight;
+
+                if (x + 100 > width || x < 0) dx = -dx;
+                if (y + 100 > height || y < 0) dy = -dy;
+
+                pollo.style.left = x + "px";
+                pollo.style.top = y + "px";
+
+                requestAnimationFrame(muovi);
+            }
+
+            muovi();
+        }
+    </script>
+</body>
+</html>
